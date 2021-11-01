@@ -12,10 +12,15 @@ public class Performance {
      * Название исполненной песни
      */
     private final String song;
+    /**
+     * Название группы
+     */
+    private final String group;
 
-    public Performance(String candidateName, String song) {
+    public Performance(String candidateName, String song, String group) {
         this.candidateName = candidateName;
         this.song = song;
+        this.group = group;
     }
 
     public String getCandidateName() {
@@ -24,6 +29,10 @@ public class Performance {
 
     public String getSong() {
         return song;
+    }
+
+    public String getGroup() {
+        return group;
     }
 
     @Override
