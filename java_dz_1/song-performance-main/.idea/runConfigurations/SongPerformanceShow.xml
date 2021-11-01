@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SongPerformanceShow" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="edu.polymorphism.songperformace.SongPerformanceShow" />
+    <module name="song-performance-show" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
