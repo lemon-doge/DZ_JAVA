@@ -37,16 +37,13 @@ public class Main {
 			}
 
 			int finalN = n;
-			future = pool.submit(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						System.out.println("fibonacci of " + finalN + " is: " + Fibonacci.fibonacciOf(finalN));
-					} catch (IllegalArgumentException ex) {
-						System.out.println(ex.getMessage());
-					} catch (RuntimeException ex) {
-						System.out.println("calculation cancelled for: " + finalN);
-					}
+			future = pool.submit(() -> {
+				try {
+					System.out.println("fibonacci of " + finalN + " is: " + Fibonacci.fibonacciOf(finalN));
+				} catch (IllegalArgumentException ex) {
+					System.out.println(ex.getMessage());
+				} catch (RuntimeException ex) {
+					System.out.println("calculation cancelled for: " + finalN);
 				}
 			});
 		}
