@@ -36,10 +36,10 @@ public class ReflectiveOperations {
 				.filter(method -> method.getAnnotation(CallMe.class).maybe())
 				.sorted(Comparator.comparing(method -> method.getAnnotation(Order.class) == null ? 0 : method.getAnnotation(Order.class).value())).toList();
 		for (Method method : sortedMethods) {
-			// todo запуск методов с параметрами ?
-//			var params = method.getParameterTypes();
-//			var instances = Arrays.stream(params).map(x -> x.newInstance()).toList();
-//			method.invoke(instance, instances);
+			// todo запуск методов с параметрами ? - выбросить исключение
+			if(method.getParameters().length != 0){
+				throw new IllegalArgumentException("method: " + method + " has parameters and CallMe annotation");
+			}
 			method.invoke(instance);
 		}
 	}

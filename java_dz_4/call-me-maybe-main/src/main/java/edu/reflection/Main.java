@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class main {
 
 			if (name.equals("exit")) {
 				System.out.println("bye");
-				System.exit(0);
+				return;
 			}
 
 			try {
@@ -31,7 +31,7 @@ public class main {
 				in.nextLine();
 			} else {
 				System.out.println("bye");
-				System.exit(0);
+				return;
 			}
 		}
 	}

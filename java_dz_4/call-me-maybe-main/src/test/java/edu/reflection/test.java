@@ -9,17 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class test {
 	String name = TestClass.class.getName();
-	private final PrintStream standardOut = System.out;
-	private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
 	@Test
-	@Order(1)
 	public void testClassByNameExists() throws ClassNotFoundException {
 		assertEquals(TestClass.class, ReflectiveOperations.getClassByName(name));
 	}
 
 	@Test
-	@Order(2)
 	public void testClassByNameDoesntExist() {
 		assertNotNull(assertThrows(ClassNotFoundException.class, () -> {
 			ReflectiveOperations.getClassByName("asd");
@@ -27,24 +23,16 @@ public class test {
 	}
 
 	@Test
-	@Order(3)
 	public void testGetParameterlessConstructor() {
 		assertDoesNotThrow(() -> assertNotNull(ReflectiveOperations.getParameterlessConstructor(ReflectiveOperations.getClassByName(name))));
 	}
 
 	@Test
-	@Order(4)
 	public void testGetMarkedMethods() {
-		assertDoesNotThrow(() -> assertEquals(8, ReflectiveOperations.getDeclaredMethods(ReflectiveOperations.getClassByName(name)).length));
-	}
-
-	@Order(5)
-	public void setUp() {
-		System.setOut(new PrintStream(outputStreamCaptor));
+		assertDoesNotThrow(() -> assertEquals(9, ReflectiveOperations.getDeclaredMethods(ReflectiveOperations.getClassByName(name)).length));
 	}
 
 	@Test
-	@Order(6)
 	public void testInvokeMarkedMethods() {
 		assertDoesNotThrow(
 				() -> ReflectiveOperations.invokeMethods(
@@ -53,17 +41,11 @@ public class test {
 						ReflectiveOperations.getDeclaredMethods(
 								ReflectiveOperations.getClassByName(name))));
 
-//		assertEquals(
-//				"""
-//						callMe = true, order = none
-//						callMe = true, order = 1
-//						callMe = true, order > 1
-//						""", outputStreamCaptor.toString());
+		assertEquals(
+				"""
+						callMe = true, order = none
+						callMe = true, order = 1
+						callMe = true, order > 1
+						""", TestClass.getString());
 	}
-
-	@Order(7)
-	public void tearDown() {
-		System.setOut(standardOut);
-	}
-
 }
